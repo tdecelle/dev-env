@@ -10,26 +10,5 @@
       update_cache: true
       state: present
   tasks:
-    - name: Check .ssh directory
-      file:
-        dest: "{{ dest_key | dirname }}"
-        mode: "0700"
-        state: directory
-    - name: Install ssh key
-      copy:
-        src: "{{ source_key }}"
-        dest: "{{ dest_key }}"
-        mode: 0600
-    - name: Install ssh key public
-      copy:
-        src: "{{ source_key }}.pub"
-        dest: "{{ dest_key }}.pub"
-        mode: 0600
-    - name: Change file ownership, group and permissions
-      file:
-        path: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
-        owner: heretic
-        group: heretic
-        mode: '1666'
-    - name: Install zsh
-      apt: name=zsh
+    - include: tasks/ssh.yml
+    - include: tasks/zsh.yml
