@@ -2,6 +2,7 @@
   vars:
     source_key: "./.ssh/id_ed25519"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+    personal: "{{ lookup('env', 'HOME') }}"
   pre_tasks:
   - name: Update Apt
     become: true
@@ -11,4 +12,6 @@
       state: present
   tasks:
     - include: tasks/ssh.yml
+    - include: tasks/git-config.yml
     - include: tasks/zsh.yml
+    - include: tasks/dotfiles.yml

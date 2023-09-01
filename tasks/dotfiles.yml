@@ -1,0 +1,6 @@
+- name: Get Latest Dotfiles
+  ansible.builtin.git:
+    repo: 'git@github.com:tdecelle/dotfiles.git'
+    bare: true
+    accept_newhostkey: true
+    dest: "{{ personal }}/.dotfiles"
