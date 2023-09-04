@@ -13,9 +13,10 @@ RUN apt-get update && \
 FROM base AS heretic
 ARG TAGS
 RUN addgroup --gid 1000 heretic
-RUN adduser --gecos heretic --uid 1000 --gid 1000 --disabled-password heretic
-USER heretic:root
+RUN (echo "heretic"; echo "heretic") | adduser --gecos heretic --uid 1000 -gid 1000 heretic && usermod -aG sudo heretic
+USER heretic
 ENV USER=heretic
+WORKDIR /home/heretic/install
 
 FROM heretic
 COPY . .

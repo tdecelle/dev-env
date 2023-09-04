@@ -12,6 +12,7 @@
       state: present
   tasks:
     - include: tasks/ssh.yml
+    - include: tasks/packages.yml
     - include: tasks/git-config.yml
     - include: tasks/zsh.yml
     - include: tasks/dotfiles.yml

@@ -18,4 +18,4 @@
     path: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
     owner: heretic
     group: heretic
-    mode: '1666'
+    mode: 0400
