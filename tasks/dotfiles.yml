@@ -1,6 +1,9 @@
 - name: Get Latest Dotfiles
   ansible.builtin.git:
     repo: 'git@github.com:tdecelle/dotfiles.git'
-    bare: true
     accept_newhostkey: true
     dest: "{{ personal }}/.dotfiles"
+- name: Stow zsh
+  shell: cd "{{ personal }}/.dotfiles" && stow -t "{{ personal }}" zsh
+- name: Return from dotfiles directory
+  shell: cd -
