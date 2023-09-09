@@ -5,5 +5,12 @@
     dest: "{{ personal }}/.dotfiles"
 - name: Stow zsh
   shell: cd "{{ personal }}/.dotfiles" && stow -t "{{ personal }}" zsh
+- name: create nvim directory
+  file:
+    dest: "{{ personal }}/.config/nvim"
+    mode: "0755"
+    state: directory
+- name: Stow nvim
+  shell: cd "{{ personal }}/.dotfiles" && stow -t "{{ personal }}/.config/nvim" nvim
 - name: Return from dotfiles directory
   shell: cd -
