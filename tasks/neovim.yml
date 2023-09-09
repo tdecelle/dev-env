@@ -1,3 +1,11 @@
-- name: Install nvim
+- name: Download Neovim
+  get_url: 
+    url: "https://github.com/neovim/neovim/releases/download/v0.9.2/nvim.appimage"
+    dest: "{{ personal}}/nvim.appimage"
+- name: Make Executable
+  file: 
+    path: "{{ personal }}/nvim.appimage"
+    mode: '0755'
+- name: Move to bin
   become: true
-  apt: name=neovim
+  shell: mv "{{ personal }}/nvim.appimage" "/usr/local/bin/nvim.appimage"
